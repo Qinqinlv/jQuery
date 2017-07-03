@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="jQuery%20file/jquery-1.11.1.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            //选择ul中索引号是2的那个li，奇怪的是虽然我选择的是ul下的索引为3的li，后面的那个ul中的li却没有被选中
+//            $("ul li:eq(2)").css("background-color","orange");
+
+            //:lt()忽略了ul的存在，将遇到的li从第一个开始编号，索引从0排到15,除非用类名或id名限定，这到底是什么鬼？
+//            $("ul>li:lt(12)").css("background-color","yellow");
+
+            //:gt()和:lt() 一样，它就像忽略了我前面还写了个ul，直接就把两个ul中的li合起来算了。
+//            $("ul li:gt(2)").css("background-color","pink");
+
+            //选择索引号为奇数的li
+//            $("ul li:odd()").css("background-color","yellow");
+            //选择索引号为偶数的li
+//            $("ul li:even()").css("background-color","orange");
+
+            $("ul.demo li:first").css("background-color","orange");
+            $("ul li:last").css("background-color","blue");
+
+
+        })
+    </script>
+</head>
+<body>
+<ul>
+    <li>这是第1个li</li>
+    <li>这是第2个li</li>
+    <li>这是第3个li</li>
+    <li>这是第4个li</li>
+    <li>这是第5个li</li>
+    <li>这是第6个li</li>
+    <li>这是第7个li</li>
+    <li>这是第8个li</li>
+</ul>
+<ul class="demo">
+    <li>这是第1个li</li>
+    <li>这是第2个li</li>
+    <li>这是第3个li</li>
+    <li>这是第4个li</li>
+    <li>这是第5个li</li>
+    <li>这是第6个li</li>
+    <li>这是第7个li</li>
+    <li>这是第8个li</li>
+</ul>
+</body>
+</html>

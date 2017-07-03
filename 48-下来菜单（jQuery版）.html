@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            padding:0;
+            margin:0;
+        }
+        .box{
+            width:330px;
+            height:30px;
+            padding-left:10px;
+            margin:100px auto 0;
+            background: url(images/xialacaidan/bg.jpg) no-repeat center top;
+        }
+        .box ul{
+            list-style: none;
+        }
+        .box ul li{
+            width:100px;
+            height:30px;
+            text-align: center;
+            font-size:14px;
+            line-height:30px;
+            margin-right: 10px;
+            float: left;
+            position: relative;
+            background: url(images/xialacaidan/libg.jpg) no-repeat center top;
+        }
+        .box li a{
+            display: block;
+            width:100px;
+            line-height:30px;
+            text-decoration: none;
+            color: #000;
+        }
+        .box ul li ul{
+            position: absolute;
+            top:30px;
+            display: none;
+        }
+    </style>
+    <script src="jquery-1.11.1.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            //mouseover和mouseenter的区别；
+            //mouseover鼠标在滑过某个盒子的时候，不仅这个盒子本身会触发mouseover事件，在这个盒子
+            //的子元素上滑动还是会触发接着触发mousever，有点像是冒泡，不过和冒泡的顺序是相反的.
+            //mouseenter事件，鼠标在该盒子上滑动一下就触发一下，只要鼠标一直是在这个盒子上滑动，
+            // 包括这个盒子中的所有子元素，这个mouseenter事件只会被触发一次
+           /* $(".box ul").children("li").mouseenter(function () {
+                $(this).children("ul").show();
+            });
+            //mouseover意思是鼠标滑上某个盒子，mouseout意思是鼠标滑出某个盒子，这是一对
+            //mouseenter对应的是mouseleave
+            $(".box ul").children("li").mouseleave(function () {
+                $(this).children("ul").hide();
+            });*/
+
+
+          /*  //另一种写法，是使用hover函数(带两个参数)，将上面触发的两个事件放在一起写
+            $(".box ul").children("li").hover(function () {
+                $(this).children("ul").show();
+            }, function () {
+                $(this).children("ul").hide();
+            });
+*/
+
+            //使用hover，不过只传入一个函数作为参数
+            $(".box ul").children("li").hover(function () {
+                var $Ul = $(this).children("ul");
+                var isShow = $Ul.css("display");
+                if(isShow == "block"){
+                    $Ul.hide(1000);
+                }else{
+                    $Ul.show(1000);
+                }
+            });
+
+
+//            //最后一种也是hover的使用，只不过，它实现相同功能使用的代码就只有一句了
+//            $(".box ul").children("li").hover(function () {
+//                $(this).children("ul").slideToggle();
+//                //slideToggle是“滑动开关”的意思
+//            })
+        })
+    </script>
+</head>
+<body>
+<div class="box">
+    <ul>
+        <li>
+            <a href="#">一级菜单1</a>
+            <ul>
+                <li><a href="#">二级菜单1</a></li>
+                <li><a href="#">二级菜单2</a></li>
+                <li><a href="#">二级菜单3</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="#">一级菜单2</a>
+            <ul>
+                <li><a href="#">二级菜单1</a></li>
+                <li><a href="#">二级菜单2</a></li>
+                <li><a href="#">二级菜单3</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="#">一级菜单3</a>
+            <ul>
+                <li><a href="#">二级菜单1</a></li>
+                <li><a href="#">二级菜单2</a></li>
+                <li><a href="#">二级菜单3</a></li>
+            </ul>
+        </li>
+    </ul>
+</div>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="jQuery%20file/jquery-1.11.1.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            //紧邻选择器
+            $(".s2 + li").css("background-color","pink");
+
+            //兄弟选择器
+            $(".s5 ~ li").css("background-color","orange");
+
+            //后代选择器
+            $(".s5 li").css("background-color","purple");
+
+            //子代选择器
+            $(".s7>p").css("background-color","green");
+        })
+    </script>
+</head>
+<body>
+ <div class="box">
+     <ul>
+         <li>我是姐姐1</li>
+         <li class="s2">我是姐姐2</li>
+         <li>我是姐姐3</li>
+         <li>我是姐姐4</li>
+         <li class="s5">我是姐姐5
+             <p>
+             <ul>
+                 <li>我是孙女1</li>
+                 <li>我是孙女2</li>
+             </ul>
+             </p>
+         </li>
+         <li>我是姐姐6</li>
+         <li class="s7">
+             我是姐姐7
+             <p>哈哈哈，我是li的孩子</p>
+             <p>哈哈哈，我是li的孩子</p>
+         </li>
+         <li>我是姐姐8</li>
+     </ul>
+ </div>
+</body>
+</html>

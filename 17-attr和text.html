@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="jQuery%20file/jquery-1.11.1.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            console.log($("div p").text());
+            //这个text()中打印出来的是文本内容，包括处于p标签中的行内元素。因为html标签在html中
+            //分为容器级元素和文本级元素，文本级元素中的内容也是文本内容
+
+           console.log($("ul li").text());
+            //text获取的是被选择的对象下的子子孙孙中的所有文本内容
+
+
+        })
+    </script>
+</head>
+<body>
+<div>
+    <p>"我是第1个p"
+        <span>yes,that's it</span>
+
+    </p>
+    <p>"我是第2个p"</p>
+</div>
+<ul>
+    <li>"我是li"
+        <div>"我是div"</div>
+    </li>
+    <li>"我是li"
+        <div>"我是div"</div>
+    </li>
+    <li>"我是li"
+        <div>"我是div"</div>
+    </li>
+</ul>
+</body>
+</html>

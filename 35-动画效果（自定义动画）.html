@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .demo{
+            width:200px;
+            height:200px;
+            background: orange;
+            display: none;
+        }
+    </style>
+    <script src="jQuery%20file/jquery-1.11.1.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("input[type = 'button']").click(function () {
+                $(".demo").slideDown(3000);
+            });
+
+            $("button:eq(0)").click(function () {
+                $(".demo").slideUp(3000, function () {
+//                    $(".demo").slideDown(3000);
+                });
+            });
+
+            //切换函数中是有判断语句的，当原本是slideDown的时候，执行slideUp；
+            // 当原本是slideUp的时候，执行slideDown
+
+            $("button:eq(1)").click(function () {
+                $(".demo").slideToggle(3000, function () {
+                    alert("切换完毕");
+                })
+            })
+
+            //淡入
+            $("button").eq(2).click(function () {
+                $(".demo").fadeIn(2000);
+            });
+
+            //淡出
+            $("button").eq(3).click(function () {
+                $(".demo").fadeOut(3000,"linear",function () {
+                    $(".demo").fadeIn(2000);
+                });
+            });
+
+            //淡到某个opacity值
+            $("button").eq(4).click(function () {
+                $(".demo"). fadeTo(2000,.6);
+            });
+
+            //淡入淡出切换
+            $("button").eq(5).click(function () {
+                $(".demo").fadeToggle(3000);
+            });
+
+            //自定义动画
+            $("button").eq(6).click(function () {
+                $(".demo").animate({
+                    "width":"300px",
+                    "height":"300px",
+                    "opacity":".8"
+                },2000,"linear", function () {
+                    alert("自定义动画结束");
+                })
+            });
+
+        })
+    </script>
+</head>
+<body>
+<input type="button" value="下拉显示">
+<button>上拉隐藏</button>
+<button>上拉下拉切换</button>
+<button>淡入</button>
+<button>淡出</button>
+<button>淡到</button>
+<button>淡入淡出切换</button>
+<button>自定义动画</button>
+<div class="demo"></div>
+</body>
+</html>

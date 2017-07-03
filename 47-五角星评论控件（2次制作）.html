@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>五角星评论控件</title>
+	<style>
+		*{
+			margin:0;
+			padding: 0;
+		}
+		.box{
+			width: 400px;
+			margin:50px auto;
+		}
+		.box ul {
+			list-style: none;
+		}
+		.box ul li {
+			font-size: 40px;
+			color: teal;
+			display: inline-block;
+			cursor: pointer;
+		}
+	</style>
+	<script src="jquery-1.11.1.min.js"></script>
+	<script>
+		jQuery(function () {
+			//需求1：鼠标滑过某个空心的五角星，那么索引号小于等于该五角星的其它所有五角星都变成实心，若一直没有发生点击事件，鼠标离开，全部变成空心
+			//需求2 ：如果点击某个五角星，那么索引号小于等于该五角星的其它五角星变成实心,每次鼠标滑过box盒子，之前的事件全部被清空，重新从mouseenter开始起作用
+
+
+			//需求1：鼠标滑过某个空心的五角星，那么索引号小于等于该五角星的其它所有五角星都变成实心，若一直没有发生点击事件，鼠标离开，全部变成空心
+			$(".box li").on("mouseenter",function () {
+				$(this).text("★").prevAll("li").text("★").end().nextAll("li").text("☆");
+
+			//需求2 ：如果点击某个五角星，那么索引号小于等于该五角星的其它五角星变成实心,点击离开，不清空
+					
+				$(".box li").on("click",function () {
+					var $that = $(this);
+					//bug:每次点击最后一个五角星，鼠标移开之后，无法变成实心
+					// $(this).text("★").prevAll("li").text("★").end().nextAll("li").text("☆")
+					$(this).parents(".box").on("mouseleave",function () {
+						$that.text("★").prevAll("li").text("★").end().nextAll("li").text("☆");
+					
+						// console.log($that.nextAll("li"));
+					})
+					// return;
+					})
+				.parents(".box").on("mouseleave",function () {
+						$(this).find("li").text("☆");
+					})
+
+// 小节1：jQuery中事件的嵌套。如果要在某一个事件每一次开始时清空之前事件的结果，那么就需要在该事件中嵌套其它的事件。
+// 似乎每一个事件中的函数体中所有内容结束之后都是直接return的undefined。因为不写return和写了return但是后面没有跟返回值，默认就是返回undefined.（用 return 语句来终止一个函数的执行，并返回 expression 的值。如果 expression 被省略，或在函数内没有 return 语句被执行，则把值 undefined 赋给调用当前函数的表达式。）  ——其实对于jq中的返回值，我还不是很了解
+
+//小节2：jQuery中的end()函数的作用：
+//除了end()函数，jq中的每一个函数都返回的是当前调用该事件的dom对象，连式编程也就是根据这个return this继续下去的，如果这个return this已经不是第一个return this值了，使用end(),就可以返回第一个return this值，这样就接着编程下去
+			})
+			
+		})
+	</script>
+</head>
+<body>
+	<div class="box">
+		<ul>
+			<li>☆</li>
+			<li>☆</li>
+			<li>☆</li>
+			<li>☆</li>
+			<li>☆</li>
+		</ul>
+	</div>
+</body>
+</html>

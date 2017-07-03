@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .demo{
+            width:200px;
+            height:200px;
+            background: orange;
+            display: none;
+        }
+    </style>
+    <script src="jQuery%20file/jquery-1.11.1.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("input[type = 'button']").click(function () {
+                $(".demo").slideDown(3000);
+            });
+
+            $("button:eq(0)").click(function () {
+                $(".demo").slideUp(3000, function () {
+//                    $(".demo").slideDown(3000);
+                });
+            });
+
+            //切换函数中是有判断语句的，当原本是slideDown的时候，执行slideUp；
+            // 当原本是slideUp的时候，执行slideDown
+
+            $("button:last").click(function () {
+                $(".demo").slideToggle(3000, function () {
+                    alert("切换完毕");
+                })
+            })
+        })
+    </script>
+</head>
+<body>
+<input type="button" value="显示">
+<button>隐藏</button>
+<button>切换</button>
+<div class="demo"></div>
+</body>
+</html>

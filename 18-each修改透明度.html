@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>each修改透明度</title>
+	<style>
+		*{
+			margin:0;
+			padding: 0;
+		}
+		ul {
+			list-style: none;
+		}
+		ul > li {
+			width: 150px;
+			height: 150px;
+			margin:20px;
+			float: left;
+			text-align: center;
+			font:40px / 150px "simsun";
+			background-color: orange;
+		}
+	</style>
+	<script src="jquery-1.11.1.min.js"></script>
+	<script>
+		jQuery(document).ready(function () {
+			//需求：给每一个盒子设置不同的透明度（透明度随着li中的text值逐渐递增）
+
+			//原理：jQuery有隐式迭代的功能，就是使用$()取到的对象都是存放在一个数组中的，就算只有一个对象也是这样的。并且当我们操作$(??)的时候，$(??)事先在内部对每一个??使用了for循环。这样我们就不用再次遍历了。通过for循环对??的操作都是一样的。如果要让$(??)中的每一个??中的操作不同，可以使用each()，用each()对每一个元素做不同的处理。
+			
+			$("li").each(function(index, el) {
+				//el是原生js中的dom对象
+				$(el).css("opacity",(index+1) * 0.1);
+			});
+		})
+	</script>
+</head>
+<body>
+	<ul>
+		<li>1</li>
+		<li>2</li>
+		<li>3</li>
+		<li>4</li>
+		<li>5</li>
+		<li>6</li>
+		<li>7</li>
+		<li>8</li>
+		<li>9</li>
+		<li>10</li>
+	</ul>
+</body>
+</html>

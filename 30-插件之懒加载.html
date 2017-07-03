@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>插件之懒加载(看到哪儿加载到哪儿)</title>
+	<style>
+		div {
+			height: 3000px;
+			background-color: teal;
+		}
+	</style>
+	<script src="jquery-1.11.1.min.js"></script>
+	<script src="jquery.lazyload.min.js"></script>
+	<script>
+		$(function () {
+			$("img.lazy").lazyload();
+		})
+	</script>
+</head>
+<body>
+<div></div>
+	<!-- <img src="images/02.jpg" alt=""> -->
+	<!-- 下面引入图片的格式时懒加载插件中指定的。可以看md文档确认。 -->
+	<img class="lazy" data-original="images/02.jpg" width="640" height="480">
+</body>
+</html>

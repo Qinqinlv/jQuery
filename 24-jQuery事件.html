@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="jQuery%20file/jquery-1.11.1.min.js"></script>
+    <script>
+        $(function () {
+            //最普通的事件绑定方式：
+            /*$("button").click(function () {
+             alert("我是click事件");
+             }).mouseenter(function () {
+             alert("我是click事件");
+             });*/
+
+            // bind ,给同一个对象同时绑定多个事件，多个事件的处理程序完全一样
+            /*$("button").bind("click mouseenter", function () {
+             alert("我是click事件");
+             });*/
+
+            // bind，给同一个对象绑定多个事件，每个事件的处理程序不同
+            /*$("button").bind({
+             "click": function () {
+             alert("我是click事件");
+             },
+             "mouseenter": function () {
+             alert("我是mouseenter事件");
+             }
+             });*/
+
+
+            // bind 传递数据
+            /*$("button").bind("click",{ aa : true }, function (e) {
+             alert(e.data.aa);
+             });*/
+
+
+            // one
+            // 给对象绑定事件，该事件只被触发一次
+            /*$("button").one("click", function () {
+             alert("我是one事件");
+             });*/
+
+            /*$("li").bind("click", function () {
+             alert($(this).html());
+             });*/
+
+            // delegate绑定方式，delegate意思是授权，给父亲绑定事件，
+            // 那么它下面的所有子元素都可以触发这个事件
+            /*$("ul").delegate("li","click", function () {
+             alert($(this).html());
+             });*/
+
+            // on 强烈推荐使用
+            /*$("ul").on("click","li", function () {
+             alert($(this).html());
+             });*/
+
+            $("div").on("click","h1", function () {
+             alert($(this).html());
+             });
+        });
+    </script>
+</head>
+<body>
+<button>绑定两个事件</button>
+<div>
+    <p>我是p元素</p>
+    <h1>我是h1元素1</h1>
+    <h1>我是h1元素2</h1>
+</div>
+<ul>
+    <li>我是li1</li>
+    <li>我是li2</li>
+    <li>我是li3</li>
+    <li>我是li4</li>
+    <li>我是li5</li>
+    <li>我是li6</li>
+    <li>我是li7</li>
+    <li>我是li8</li>
+    <li>我是li9</li>
+    <li>我是li10</li>
+</ul>
+</body>
+</html>

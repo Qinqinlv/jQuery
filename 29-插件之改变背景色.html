@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>插件之改变背景色</title>
+	<style>
+		div{
+			width: 100px;
+			height: 100px;
+			background-color: teal;
+			margin-top:10px;
+		}
+	</style>
+	<!-- 先引入jQuery,再引入插件 -->
+	<script src="jquery-1.11.1.min.js"></script>
+	<script src="jquery.color.js"></script>
+	<script>
+		$(function () {
+			//需求：获取按钮，改变盒子的背景色
+			$("button").on("click",function () {
+				$("div").animate({
+					"width": 200,
+					"height": 200,
+					"backgroundColor":"red"
+				},2000, function() {
+					/* stuff to do after animation is complete */
+					alert("颜色改变成功")
+				});
+			})
+		})
+	</script>
+</head>
+<body>
+<button>变色</button>
+	<div></div>
+</body>
+</html>

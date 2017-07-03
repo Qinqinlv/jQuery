@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>多库共存</title>
+	<!-- 低版本的写在高版本的前面，这样高版本的能层叠掉低版本的 -->
+	<script src='jquery-1.8.2.min.js'></script>
+	<!-- <script src="j"></script> -->
+	<script src="jquery-1.11.1.min.js"></script>
+	<script>
+		jQuery(function () {
+			//打印jQuery的版本号
+			// console.log($.fn.jquery);
+
+			//让1.11.1版本的jQuery放弃对$符的使用权
+			// $.noConflict();
+			// console.log($.fn.jquery);
+			// console.log(jQuery.fn.jquery);//现在1.11.1 版本就只能使用jQuery这个变量了。
+
+			// 如果2个以上的库共存又该怎么办？
+			//让高版本的放弃对$和jQuery这个两个变量的使用
+			var MrLv = $.noConflict(true);
+			console.log($.fn.jquery);
+			console.log(jQuery.fn.jquery)
+			console.log(MrLv.fn.jquery);
+		})
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>按键变色</title>
+	<style>
+		.wrap{
+			width: 300px;
+			margin:30px auto;
+			text-align: center;
+		}
+		.wrap .box {
+			width: 300px;
+			height: 300px;
+			background-color: orange;
+			line-height: 300px;
+			font-size: 30px;
+			color: #fff;
+		}
+	</style>
+	<script src="jquery-1.11.1.min.js"></script>
+	<script>
+		jQuery(function () {
+			//点击.box盒子，根据所点击的字母，给.box更换背景色为以该字母为首的颜色，并且将该背景色的代号传给.box下面的span
+
+			//1.给document绑定keydown事件(注意：这里不能给box绑定keydown事件，因为box不是form元素，无法在页面呈现后输入文字)
+			$(document).on("keydown",function (event) {
+				var value = event.keyCode;
+				// alert(value);
+				switch (value) {
+					case 82:
+						$(".col").text(value);
+						$(".box").css("backgroundColor","red");
+						break;
+					case 66:
+						$(".col").text(value);
+						$(".box").css("backgroundColor","blue");
+						break;
+					case 79:
+						$(".col").text(value);
+						$(".box").css("backgroundColor","orange");
+						break;
+					case 89:
+						$(".col").text(value);
+						$(".box").css("backgroundColor","yellow");
+						break;
+					case 84:
+						$(".col").text(value);
+						$(".box").css("backgroundColor","teal");
+						break;
+					default:
+						alert("系统没有设置该颜色")；
+
+				}
+			})
+			//2.根据keycode值上色
+			//3.将颜色代号传递给span
+
+
+		})
+	</script>
+</head>
+<body>
+	<div class="wrap">
+		<h2>按键变色</h2>
+		<div class="box">
+			盒子的颜色是：
+			<span class="col">80</span>
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>五角星评论案例</title>
+	<style>
+		* { padding: 0; margin: 0; }
+		.comment {
+			font-size: 40px;
+			color: teal;			
+		}
+		.comment li {
+			float: left;
+			cursor:pointer;
+		}
+		ul { list-style: none;}
+	</style>
+	<script src="jquery-1.11.1.min.js"></script>
+	<script>
+	//这是我自己提前写好的
+	/*$(function(){
+		//实现五角星评论效果分为3个步骤
+			//1.鼠标滑过，当前五角星和索引号在该五角星之前的所有五角星背景色改变
+			$(".comment li").mouseenter(function(event) {
+				$(this).parent().children("li").html("☆");
+				
+				var index = $(this).index();
+
+				$(this).parent()
+				.children("li:lt("+(index+1)+")")
+				.html("★");
+			})
+			
+			//2.鼠标点击某个五角星，该五角星和索引号小于该五角星的所有五角星背景颜色改变
+			$(".comment li").click(function(event) {
+				var index = $(this).index();
+				$(this).parent().children("li:lt("+(index+1)+")")
+				.html("★");
+			});
+
+
+
+			//3.鼠标滑动后并没有单击任何一个五角星，则所有五角星背景色消失
+	})
+		*/
+	
+	//这是跟着老师讲的做的
+	$(function(){
+
+		var wjx_shi = "★",
+			wjx_kong = "☆";
+
+		$(".comment").on("mouseenter","li",function(){
+				
+				//这是第一步：鼠标滑过，当前的li变成实心，它前面的所有兄弟元素变成实心，它后面的所有兄弟元素变成空心
+				//1.  prevAll指的是当前对象的前面的所有兄弟元素
+				//2.  end()就是结束前面除最初的那个$(this).text(wjx_shi)外，其它的所有排在后面的链
+				//这样，在end()后面就可以继续在$(this)的基础上书写代码了
+				//3.  nextAll()指的就是当前元素后面的所有兄弟元素
+				$(this).text(wjx_shi).prevAll().text(wjx_shi).end().nextAll(
+					).text(wjx_kong);
+
+				//这是第二步：记录下被点击的那个li，可以给被点击的那个li绑定一个空类名
+				}).on("click","li",function(){
+					$(this).attr("class","checked").siblings().removeAttr("class");
+
+					//这是第三步：当鼠标离开ul这个盒子的时候，之前被点击的那个li和它之前所有的兄弟元素
+				//都变成实心，它后面所有的兄弟元素都变成空心
+				}).on("mouseleave",function(){
+					//有个bug，当鼠标移开的时候，如果没有点击过li，最后一次滑过的五角星和它之前的都被选中。
+					if($("li.checked").length === 0) {
+						$("li").parent().children().text(wjx_kong);
+					}
+					else {
+						$(".checked").text(wjx_shi).prevAll().text(wjx_shi).end().nextAll().text(wjx_kong);
+					}
+					
+				})
+			
+	})			
+	</script>
+</head>
+<body>
+	<ul class="comment">
+		<li>☆</li>
+		<li>☆</li>
+		<li>☆</li>
+		<li>☆</li>
+		<li>☆</li>
+	</ul>
+</body>
+</html>

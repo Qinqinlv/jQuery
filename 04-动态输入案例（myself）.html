@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>我做的动态输入案列</title>
+    <style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+    
+    @keyframes blink {
+        0%,
+        100% {
+            opacity: 1
+        }
+        50% {
+            opacity: 0
+        }
+    }
+    
+    @-webkit-keyframes blink {
+        0%,
+        100% {
+            opacity: 1
+        }
+        50% {
+            opacity: 0
+        }
+    }
+    
+    @-moz-keyframes blink {
+        0%,
+        100% {
+            opacity: 1
+        }
+        50% {
+            opacity: 0
+        }
+    }
+    
+    .wrap {
+        width: 1000px;
+        text-align: center;
+        margin: 100px auto 0;
+    }
+    
+    .wrap h1 {
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        font-weight: 300;
+    }
+    
+    .word {
+        font-weight: 700;
+    }
+    
+    .typed-cursor {
+        opacity: 1;
+        -webkit-animation: blink .7s infinite;
+        -moz-animation: blink .7s infinite;
+        animation: blink .7s infinite;
+        /*display: none;*/
+    }
+    
+    .saySection {
+        margin-top: 50px;
+    }
+    
+    .saySection input {
+        font-size: 30px;
+    }
+    
+    .saySection .txtSay {
+        padding-left: 10px;
+    }
+    
+    .saySection .btnSay {
+        display: inline-block;
+        padding: 0 20px;
+        cursor: pointer;
+    }
+    </style>
+    <script src="jquery-1.11.1.min.js"></script>
+    <script>
+    jQuery(function() {
+        //需求1：页面一加载，页面上每间隔一段时间就出现一个字符，默认情况下，该字符串固定
+        //需求2：在输入框中输入字符串后点击“say”按钮，该字符串会代替默认的字符串，每隔固定的一段时间显示出来
+
+
+
+        //需求1：页面一加载，页面行上每个一段时间就出现一个字符，默认情况下，该字符串固定
+        var str1 = "红鲤鱼绿鲤鱼与驴";
+        var str_arr = str1.split("");
+        // console.log($str_arr);
+
+        //定义一个定时器
+        var timer = null;
+        var num = -1; //定义次数
+        var str2 = [];
+        var str3 = "";
+        timer = setTimeout(func, 200);
+
+
+        function func() {
+            num++;
+            if (num > 7) {
+                $(".typed-cursor").css("display", "none");
+                clearInterval(timer);
+                return;
+            }
+            str2.push(str_arr[num]);
+            str3 = str2.join("");
+            $(".word").text(str3);
+            timer = setTimeout(arguments.callee, 200);
+
+        }
+
+
+        //需求2：在输入框中输入字符串后点击“say”按钮，该字符串会代替默认的字符串，每隔固定的一段时间显示出来
+
+        $("#btnSay").on("click", function() {
+            //清空word盒子中原来的字符
+            $(".word").text("");
+
+            var $word = $("#inValue").val();
+            // console.log($word);
+            var str1 = $word.split("");
+            var str2 = "";
+            var num = -1;
+
+            var timer = setTimeout(func, 200);
+
+            function func() {
+                num++;
+                if (num >= $word.length) {
+                    $(".typed-cursor").css("display", "none");
+                    clearInterval(timer);
+                    return;
+                }
+                str2 += str1[num];
+                
+                $(".word").text(str2);
+                timer = setTimeout(arguments.callee, 200);
+
+            }
+
+            $("#inValue").val("");
+        })
+
+    });
+    </script>
+</head>
+
+<body>
+    <div class="wrap">
+        <h1>
+            You want to say ： <span class="word"></span><span class="typed-cursor">|</span> ！
+        </h1>
+        <div class="saySection">
+            <input type="text" id="inValue" class="txtSay" />
+            <input type="button" value="Say" id="btnSay" class="btnSay" />
+        </div>
+    </div>
+</body>
+
+</html>

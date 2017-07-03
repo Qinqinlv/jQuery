@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="jQuery%20file/jquery-1.11.1.min.js"></script>
+    <script>
+        //这是jQuery中提供的入口函数，什么是入口函数呢？其实和js中的window.onload功能是一样的，
+        //只是，window.onload这个函数在jQuery中被封装了起来。
+
+        $(document).ready(function () {
+
+        })
+
+        //封装一个iQuery，实现jQuery中ready函数的功能
+        function iQuey(dom){
+            var obj = {
+                // 判断一下 docuemnt.onload 有没有被赋值（或者说有没有这个事件）
+                // 1.有：接收一个旧的函数，然后呢，我先去调用新的函数，接着再调用旧的函数
+                // 2.没有：直接赋值个onload事件
+                ready: function (func) { //ready会接收一个函数作为参数
+
+                    //如果typeof dom.onload == "function"，那么就表明在使用iQuery的ready函数之前，或许之前已经使用过同一个ready入口函数，或者是js中的window.onload.一旦检测到之前已经有调用过ready，那就把之前调用的转换成一个普通函数，附加在新调用的ready函数的函数体最后
+                    if(typeof dom.onload == "function"){
+                       var oldFunc = dom.onload;
+                        func();
+                        oldFunc();
+                    }
+                    //如果typeof dom.onload == null，说明之前没有调用过ready函数，这样，就把之前调用的ready 函数内容，作为新的ready函数的子函数返回出来。
+                    else{
+                        dom.onload = func();
+                    }
+                }
+            };
+            return obj;
+        }
+    </script>
+</head>
+<body>
+
+</body>
+</html>

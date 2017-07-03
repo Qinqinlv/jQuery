@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>jQuery和js中删除类</title>
+	<script src="jquery-1.11.1.min.js"></script>
+	<script>
+		$(function () {
+			var box1 = document.querySelector(".box1");
+			box1.classList.add("demo");
+			box1.classList.remove("box1");
+			var divs = document.querySelectorAll("div");
+			
+
+		})
+	</script>
+</head>
+<body>
+	<div class="box1 parent child"></div>
+	<div class="box2 parent"></div>
+</body>
+</html>

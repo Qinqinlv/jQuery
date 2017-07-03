@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>自定义插件</title>
+	<script src="jquery-1.11.1.min.js"></script>
+	<script src="jQuery.Mrlv.js"></script>
+	<script>
+		$(function () {
+			$("button").on("click",function () {
+				$(this).setColorTeal();
+			})
+		})
+		// 这种插件是定义在jQuery实例上的。写法是$.fn.函数名 = function () {};
+		// 也可以给 jQuery这个对象本身进行扩展。写法是$.函数名 = function () {}。
+	</script>
+</head>
+<body>
+	<button>按钮1</button>
+	<button>按钮2</button>
+	<button>按钮3</button>
+	<button>按钮4</button>
+	<button>按钮5</button>
+	<button>按钮6</button>
+</body>
+</html>

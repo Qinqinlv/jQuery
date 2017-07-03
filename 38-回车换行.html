@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>回车换行</title>
+	<style>
+		input {
+			display: block;
+			
+		}
+	</style>
+	<script src="jquery-1.11.1.min.js"></script>
+	<script>
+		$(function () {
+			//需求：在input文本框中点击enter键实现换行效果
+			//实现方式： 给所有的input绑定keydown事件，然后根据按键的keycode判断是否是enter键，如果是，则换行。也就是下一个input兄弟获得焦点。
+			$("input").on("keydown",function (event) {
+				// alert(event.keyCode);
+				if(event.keyCode == 13){
+					// $(this).next("input").trigger("focus");
+					//另外一种方法：(原生js中的方法)
+					$(this).next()[0].focus();
+				};
+			});
+
+			//一旦光标进入哪个input，当前input中的内容就被选中
+			$("input").on("focus",function () {
+				$(this).select();
+				// $(".demo").mouseenter();
+			})
+
+		})
+	</script>
+</head>
+<body>
+	<input type="text" name="" id="" value="你猜我是谁？">
+	<input type="text" name="" id="" value="你猜我是谁？">
+	<input type="text" name="" id="" value="你猜我是谁？">
+	<input type="text" name="" id="" value="你猜我是谁？">
+	<input type="text" name="" id="" value="你猜我是谁？">
+	<input type="text" name="" id="" value="你猜我是谁？">
+	<div class="demo"></div>
+</body>
+</html>
